@@ -11,6 +11,22 @@ Route::get('/mahasiswa', function () {
     return view('mahasiswa/index');
 });
 
+Route::get('/create1', function () {
+    return view('mahasiswa/create1');
+});
+
+Route::get('/create2', function () {
+    return view('mahasiswa/create2');
+});
+
+Route::get('/create3', function () {
+    return view('mahasiswa/create3');
+});
+
+Route::get('/create4', function () {
+    return view('mahasiswa/create4');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
