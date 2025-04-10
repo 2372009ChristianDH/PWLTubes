@@ -4,7 +4,10 @@
   <div class="container">
     <div class="page-inner">
       <div class="page-header">
-        <h3 class="fw-bold mb-3">Pengajuan Surat Laporan Hasil Studi</h3>
+        <h3 class="fw-bold mb-3" style="padding-right: 10px">Pengajuan Surat Keterangan Lulus</h3>
+        <p class="fw-bold text-primary mb-3" style="font-size: 1.25rem; line-height: 1.5; font-weight: 500; border-left: 4px solid #007bff; padding-left: 10px;">
+          {{ Auth::user()->mahasiswa->nama ?? Auth::user()->nama }} - {{ Auth::user()->mahasiswa->nrp ?? '' }}
+        </p>
         <ul class="breadcrumbs mb-3">
           <li class="nav-home"><a href="#http://127.0.0.1:8000/mahasiswa"><i class="icon-home"></i></a></li>
         </ul>
@@ -13,14 +16,12 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-body">
-              <form>
+              <form action="{{ route('surat_lulus') }}" method="POST">
+                @csrf
+                <input type="hidden" name="jenis_surat" value="{{ request()->query('jenis_surat') }}">
                 <div class="form-group">
-                  <label for="name">Nama</label>
-                  <input type="text" id="name" maxlength="100" placeholder="e.g. John Doe" class="form-control" required>
-                </div>  
-                <div class="form-group">
-                  <label for="keperluan">Keperluan Pengajuan</label>
-                  <textarea id="keperluan" maxlength="700" placeholder="e.g. Saya mengajukan surat ini untuk..." rows="6" class="form-control" required></textarea>
+                  <label for="tgl_kelulusan">Tanggal Kelulusan</label>
+                  <input type="date" id="tgl_kelulusan" name="tgl_kelulusan" class="form-control" style="width: 20%" required>
                 </div>
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Submit</button>

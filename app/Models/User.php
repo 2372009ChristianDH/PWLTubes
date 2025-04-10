@@ -2,63 +2,42 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-
-    protected $table = 'mahasiswa';
-
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    protected $table = 'user';  // Gunakan tabel 'user' untuk menyimpan password
+
     protected $fillable = [
-        'nrp',
         'nama',
         'email',
         'password',
-        'tgl_lahir',
+        'id_roles',
     ];
 
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    protected $primarykey = 'nrp';
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
 
-    public $incrementing = false;
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function mahasiswa()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasOne(Mahasiswa::class, 'id_users');  // Relasi ke tabel mahasiswa
     }
 
-    public function getAuthIdentifierName()
-        {
-            return 'nrp'; // Ini memberitahukan bahwa 'nrp' adalah kolom yang digunakan untuk autentikasi.
-        }
+    public function role()
+    {
+        return $this->belongsTo(Roles::class, 'id_roles');
+    }
+
 
 }

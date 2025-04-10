@@ -336,8 +336,8 @@
                   />
                 </div>
                 <span class="profile-username">
-                  <span class="op-7">Hi,</span>
-                  <span class="fw-bold">Hizrian</span>
+                  <span class="op-7 ; fw-bold">Hi,</span>
+                  <span class="fw-bold">{{ Auth::user()->mahasiswa->nama ?? Auth::user()->nama }} - {{ Auth::user()->mahasiswa->nrp ?? '' }}</span>
                 </span>
               </a>
               <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -352,8 +352,8 @@
                         />
                       </div>
                       <div class="u-text">
-                        <h4>Hizrian</h4>
-                        <p class="text-muted">hello@example.com</p>
+                        <h4>{{ Auth::user()->mahasiswa->nama ?? Auth::user()->nama }} - {{ Auth::user()->mahasiswa->nrp ?? '' }}</h4>
+                        <p class="text-muted">{{ Auth::user()->mahasiswa->email ?? Auth::user()->email }}</p>
                         <a
                           href="profile.html"
                           class="btn btn-xs btn-secondary btn-sm"
@@ -370,7 +370,11 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Account Setting</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                      @csrf
+                      <button type="submit" class="text-red-600">Logout</button>
+                  </form>
+                  
                   </li>
                 </div>
               </ul>

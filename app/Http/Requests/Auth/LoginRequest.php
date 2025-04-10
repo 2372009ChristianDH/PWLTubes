@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Requests\Auth;
-
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Illuminate\Support\Facades\DB; // Import DB facade
+use Illuminate\Support\Facades\Redirect; // Import Redirect facade
 
 class LoginRequest extends FormRequest
 {
@@ -40,16 +43,32 @@ class LoginRequest extends FormRequest
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
-
-        if (! Auth::attempt($this->only('nrp', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
-
-            throw ValidationException::withMessages([
-                'nrp' => trans('auth.failed'),
-            ]);
+    
+        // Cari NRP di tabel mahasiswa
+        $mahasiswa = DB::table('mahasiswa')->where('nrp', $this->nrp)->first();
+    
+        // Jika NRP ditemukan, cari user berdasarkan id_users
+        if ($mahasiswa) {
+            // Cari user berdasarkan id_users yang ada di mahasiswa
+            $user = DB::table('user')->where('id', $mahasiswa->id_users)->first();
+    
+            // Verifikasi password
+            if ($user && Hash::check($this->password, $user->password)) {
+                Auth::loginUsingId($user->id); // Login berhasil, gunakan user ID
+                RateLimiter::clear($this->throttleKey());
+                
+                // Redirect ke halaman index mahasiswa
+                Redirect::to('/mahasiswa/index')->send();
+                return;
+            }
         }
-
-        RateLimiter::clear($this->throttleKey());
+    
+        // Jika gagal login
+        RateLimiter::hit($this->throttleKey());
+    
+        throw ValidationException::withMessages([
+            'nrp' => trans('auth.failed'),
+        ]);
     }
 
     /**

@@ -96,7 +96,7 @@
 </head>
 <body>
     <div class="login-container">
-        <h2>Login Karyawan</h2>
+        <h2>Login Mahasiswa</h2>
 
         <!-- Tampilkan pesan error jika ada -->
         <div class="error-messages">
@@ -109,13 +109,13 @@
             @endif
         </div>
 
-        <form method="POST" action="{{ route('login_karyawan') }}">
+        <form method="POST" action="{{ route('login_mahasiswa') }}">
             @csrf
 
             <!-- NIM Input -->
             <div class="form-group">
-                <label for="nik">NIK:</label>
-                <input type="text" id="nik" name="nik" value="{{ old('nik') }}" required>
+                <label for="nrp">NRP:</label>
+                <input type="text" id="nrp" name="nrp" value="{{ old('nrp') }}" required>
             </div>
 
             <!-- Password Input -->

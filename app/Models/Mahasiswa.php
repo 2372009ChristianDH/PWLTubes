@@ -8,9 +8,18 @@ class Mahasiswa extends Model
 {
     protected $table = 'mahasiswa';
 
-    protected $primaryKey = 'nrp';
-    protected $fillable = ['nrp', 'nama', 'email', 'password', 'tgl_lahir'];
-    protected $keyType = 'string';
-    public $incrementing = false;
+    protected $primaryKey = 'id';
+    protected $fillable = ['id', 'nrp', 'id_users', 'id_program_studi'];
+    protected $keyType = 'int';
     
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_users');
+    }
+
+    public function programStudi()
+    {
+        return $this->belongsTo(ProgramStudi::class, 'id_program_studi');
+    }
 }
