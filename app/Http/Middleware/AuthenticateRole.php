@@ -15,7 +15,7 @@ class AuthenticateRole
     {
         // Cek apakah user sudah login
         if (!Auth::check()) {
-            return redirect()->route('login_mahasiswa')->withErrors(['error' => 'Silakan login terlebih dahulu.']);
+            return redirect('/')->withErrors(['error' => 'Anda tidak memiliki izin untuk mengakses halaman ini.']);
         }
 
         // Ambil user yang sedang login

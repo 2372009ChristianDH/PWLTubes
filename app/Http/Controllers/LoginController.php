@@ -44,6 +44,8 @@ class LoginController extends Controller
                         return redirect()->route('kaprodi.index');
                     case '3':
                         return redirect()->route('tu.index');
+                    case '5':
+                        return redirect()->back()->withErrors(['role' => 'Akun Sudah InActive']);
                     default:
                         Auth::logout();
                         return redirect()->route('login_karyawan')->withErrors(['role' => 'Role tidak valid.']);
@@ -53,7 +55,7 @@ class LoginController extends Controller
             }
         } else {
             // Return error if NIK is not found
-            return back()->withErrors(['nik' => 'NRP not found.']);
+            return back()->withErrors(['nik' => 'NIK not found.']);
         }
     }
 
@@ -68,7 +70,6 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        // Find the karyawan by NIK
         $mahasiswa = Mahasiswa::where('nrp', $request->nrp)->first();
 
         if ($mahasiswa) {
@@ -88,7 +89,7 @@ class LoginController extends Controller
             }
         } else {
             // Return error if NIK is not found
-            return back()->withErrors(['nrp' => 'NIK not found.']);
+            return back()->withErrors(['nrp' => 'NRP not found.']);
         }
     }
 

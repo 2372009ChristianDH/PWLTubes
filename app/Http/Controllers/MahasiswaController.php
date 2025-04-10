@@ -6,6 +6,7 @@ use App\Models\Mahasiswa;
 use App\Models\Surat;
 use App\Models\User;
 use App\Models\SuratDetail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Import Auth
 
@@ -70,7 +71,6 @@ class MahasiswaController extends Controller
         $surat_detail->id_surat = $surat->id;
         $surat_detail->jenis_surat = $validatedData['jenis_surat'];
         $surat_detail->tgl_permohonan = now();
-        $surat_detail->status_persetujuan = 'pending';
         $surat_detail->keterangan = null;
         $surat_detail->tgl_persetujuan = null;
         $surat_detail->save(); // Simpan ke database
@@ -104,7 +104,6 @@ class MahasiswaController extends Controller
         $surat_detail->id_surat = $surat->id;
         $surat_detail->jenis_surat = $validatedData['jenis_surat'];
         $surat_detail->tgl_permohonan = now();
-        $surat_detail->status_persetujuan = 'pending';
         $surat_detail->keterangan = null;
         $surat_detail->tgl_persetujuan = null;
         $surat_detail->save(); // Simpan ke database
@@ -145,7 +144,6 @@ class MahasiswaController extends Controller
         $surat_detail->id_surat = $surat->id;
         $surat_detail->jenis_surat = $validatedData['jenis_surat'];
         $surat_detail->tgl_permohonan = now();
-        $surat_detail->status_persetujuan = 'pending';
         $surat_detail->keterangan = null;
         $surat_detail->tgl_persetujuan = null;
         $surat_detail->save(); // Simpan ke database
@@ -178,7 +176,6 @@ class MahasiswaController extends Controller
         $surat_detail->id_surat = $surat->id;
         $surat_detail->jenis_surat = $validatedData['jenis_surat'];
         $surat_detail->tgl_permohonan = now();
-        $surat_detail->status_persetujuan = 'pending';
         $surat_detail->keterangan = null;
         $surat_detail->tgl_persetujuan = null;
         $surat_detail->save(); // Simpan ke database

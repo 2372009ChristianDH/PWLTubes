@@ -137,22 +137,32 @@
                             <ul class="nav nav-collapse">
                                 <li>
                                     <a href="{{ route('data.kaprodiTI') }}">
-                                        <span class="sub-item">Data Ketua Program Studi TI</span>
+                                        <span class="sub-item">Ketua Program Studi TI</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
-                                        <span class="sub-item">Data Ketua Program Studi SI</span>
+                                    <a href="{{ route('data.kaprodiSI') }}">
+                                        <span class="sub-item">Ketua Program Studi SI</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
-                                        <span class="sub-item">Data Ketua Program Studi IK</span>
+                                    <a href="{{ route('data.kaprodiIK') }}">
+                                        <span class="sub-item">Ketua Program Studi IK</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="icon-menu.html">
-                                        <span class="sub-item">Data Tata Usaha<</span>
+                                    <a href="{{ route('data.tuTI') }}">
+                                        <span class="sub-item">Tata Usaha TI</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('data.tuSI') }}">
+                                        <span class="sub-item">Tata Usaha SI</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('data.tuIK') }}">
+                                        <span class="sub-item">Tata Usaha IK</span>
                                     </a>
                                 </li>
                             </ul>

@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
-    <h1 class="fw-bold mb-3" style="text-align: center; font-size: 40px; padding-top:100px; color:rgb(0, 0, 112);">Data Ketua Program Studi Teknik Informatika</h1>
+    <h1 class="fw-bold mb-3" style="text-align: center; font-size: 40px; padding-top:100px; color:rgb(0, 0, 112);">Data Ketua Program Studi Ilmu Komputer</h1>
 
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show bg-success text-white" role="alert">
@@ -12,7 +12,7 @@
 
     <div class="card-header">
         <div class="d-flex align-items-center">
-            <a href="{{ route('kaprodi.createKaprodiTI') }}" class="btn btn-primary btn-round ms-auto" style="margin-right: 100px; font-size: 17px;">
+            <a href="{{ route('kaprodi.createKaprodiIK') }}" class="btn btn-primary btn-round ms-auto" style="margin-right: 100px; font-size: 17px;">
                 <i class="fa fa-plus"></i> Tambah Kaprodi
             </a>
         </div>
@@ -36,7 +36,7 @@
                         </tr>
                     </thead>
                     <tbody> 
-                    @foreach ($dataKaprodiTI as $data)
+                    @foreach ($dataKaprodiIK as $data)
                         <tr>
                             <td>{{ $data->nik }}</td>
                             <td>{{ $data->user->nama }}</td>
@@ -47,14 +47,14 @@
 
                             @if ($data->user->id_roles == 2)
                                 <!-- Tombol Edit -->
-                                <a href="{{ route('kaprodi.editKaprodiTI', ['id' => $data->user->id]) }}" class="btn btn-warning btn-sm">
+                                <a href="{{ route('kaprodi.editKaprodiIK', ['id' => $data->user->id]) }}" class="btn btn-warning btn-sm">
                                 Edit                                             
                                 </a>
                                 <!-- Tombol Hapus -->
-                                <form action="{{ route('kaprodi.deleteKaprodiTI', ['id' => $data->user->id]) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('kaprodi.deleteKaprodiIK', ['id' => $data->user->id]) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin cabut jabatan kaprodi ini?');">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin mencabut jabatan kaprodi ini?');">
                                         <i class="fa fa-trash"></i> Cabut Jabatan
                                     </button>
                                 </form>

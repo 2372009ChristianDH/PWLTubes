@@ -43,18 +43,20 @@ class KaprodiController extends Controller
     public function acc($id)
     {
         $surat = Surat::findOrFail($id);
-        $surat->suratDetail()->update(['status_persetujuan' => 'Disetujui']);
+        $surat->suratDetail()->update(['status_persetujuan' => 'Sedang Diproses Tata Usaha']);
 
-        return redirect()->back()->with('success', 'Surat berhasil disetujui.');
+        return redirect()->back()->with('success', 'Surat berhasil disetujui kaprodi.');
     }
 
 
-    public function tolakSurat($id)
+    public function tolakSurat(Request $request, $id)
     {
         $surat = Surat::findOrFail($id);
         
         // Update status surat menjadi Ditolak
-        $surat->suratDetail->update(['status_persetujuan' => 'Ditolak']);
+        $surat->suratDetail->update(['status_persetujuan' => 'Surat Ditolak']);
+        $surat->suratDetail->update(['keterangan' => $request->keterangan]);
+        $surat->suratDetail->update(['tgl_persetujuan' => now()]);
 
         return redirect()->back()->with('success', 'Surat berhasil ditolak.');
     }

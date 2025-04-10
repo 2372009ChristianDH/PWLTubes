@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,7 +50,8 @@
             color: #555;
         }
 
-        input[type="text"], input[type="password"] {
+        input[type="text"],
+        input[type="password"] {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #ccc;
@@ -60,7 +62,8 @@
             transition: all 0.3s ease;
         }
 
-        input[type="text"]:focus, input[type="password"]:focus {
+        input[type="text"]:focus,
+        input[type="password"]:focus {
             border-color: #007bff;
             background-color: #fff;
         }
@@ -94,6 +97,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="login-container">
         <h2>Login Mahasiswa</h2>
@@ -128,7 +132,13 @@
             <div class="form-group">
                 <button type="submit" class="submit-btn">Login</button>
             </div>
+            
+            <!-- Back Button -->
+            <div class="form-group">
+                <button type="button" class="submit-btn" style="background-color: #6c757d;" onclick="history.back()">Back</button>
+            </div>
         </form>
     </div>
 </body>
+
 </html>

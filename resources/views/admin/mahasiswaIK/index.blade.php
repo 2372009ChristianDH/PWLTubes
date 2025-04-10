@@ -1,14 +1,14 @@
 @extends('layouts.index')
 
 @section('content')
-@if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show bg-success text-white" role="alert">
-        <strong>{{ session('success') }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
     <h3 class="fw-bold mb-3" style="text-align: center; font-size: 40px; padding-top:100px; color:rgb(0, 0, 112);">Data Mahasiswa Ilmu Komputer</h3>
 
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show bg-success text-white" role="alert">
+            <strong>{{ session('success') }}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <div class="card-header">
         <div class="d-flex align-items-center">

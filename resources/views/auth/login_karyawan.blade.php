@@ -128,6 +128,12 @@
             <div class="form-group">
                 <button type="submit" class="submit-btn">Login</button>
             </div>
+
+            <!-- Back Button -->
+            <div class="form-group">
+                <button type="button" class="submit-btn" style="background-color: #6c757d;" onclick="history.back()">Back</button>
+            </div>
+        </form>
         </form>
     </div>
 </body>
