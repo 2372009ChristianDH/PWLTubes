@@ -15,20 +15,37 @@ class MahasiswaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Mendapatkan user ID dari user yang sedang login
         $userId = Auth::user()->id;
+        $tanggalAwal = $request->input('tanggal_awal');
     
-        // Memisahkan surat berdasarkan jenis dan user ID yang login
-        $suratKeaktifan = Surat::where('jenis_surat', 'keaktifan')->where('id_users', $userId)->get();
-        $suratLaporanHasilStudi = Surat::where('jenis_surat', 'lhs')->where('id_users', $userId)->get();
-        $suratPengantarTugas = Surat::where('jenis_surat', 'ptmk')->where('id_users', $userId)->get();
-        $suratKelulusan = Surat::where('jenis_surat', 'lulus')->where('id_users', $userId)->get();
+        // Ambil semua surat user yang termasuk 4 jenis itu
+        $allSurat = Surat::with('suratDetail')
+            ->whereIn('jenis_surat', ['keaktifan', 'lhs', 'ptmk', 'lulus'])
+            ->where('id_users', $userId)
+            ->when($tanggalAwal, function ($query) use ($tanggalAwal) {
+                $query->whereHas('suratDetail', function ($subQuery) use ($tanggalAwal) {
+                    $subQuery->whereDate('tgl_permohonan', '=', $tanggalAwal);
+                });
+            })
+            ->get();
     
-        // Mengirimkan data terpisah ke view
-        return view('mahasiswa.index', compact('suratKeaktifan', 'suratLaporanHasilStudi', 'suratPengantarTugas', 'suratKelulusan'));
+        // Pisahkan datanya berdasarkan jenis_surat
+        $suratKeaktifan = $allSurat->where('jenis_surat', 'keaktifan');
+        $suratLaporanHasilStudi = $allSurat->where('jenis_surat', 'lhs');
+        $suratPengantarTugas = $allSurat->where('jenis_surat', 'ptmk');
+        $suratKelulusan = $allSurat->where('jenis_surat', 'lulus');
+    
+        return view('mahasiswa.index', compact(
+            'suratKeaktifan',
+            'suratLaporanHasilStudi',
+            'suratPengantarTugas',
+            'suratKelulusan'
+        ));
     }
+    
+    
     
 
 

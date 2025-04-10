@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('kaprodi.storeKaprodiIK') }}" method="POST">
+                            <form action="{{ route('kaprodi.storeKaprodiSI') }}" method="POST">
                                 @csrf
                                 <!-- Input NRP -->
                                 <div class="mb-3">

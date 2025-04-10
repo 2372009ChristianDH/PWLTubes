@@ -15,7 +15,7 @@ class AuthenticateRole
     {
         // Cek apakah user sudah login
         if (!Auth::check()) {
-            return redirect('/')->withErrors(['error' => 'Anda tidak memiliki izin untuk mengakses halaman ini.']);
+            return redirect('/');
         }
 
         // Ambil user yang sedang login
@@ -29,14 +29,10 @@ class AuthenticateRole
         // Ubah role ke string jika perlu (untuk menangani tipe data yang berbeda)
         $userRole = strval($user->id_roles);
 
-        // Jika role yang diminta adalah mahasiswa atau karyawan, sesuaikan halaman login
         if (!in_array($userRole, $roles)) {
-            if ($userRole == '4') {
-                return redirect()->route('login_mahasiswa')->withErrors(['error' => 'Anda tidak memiliki izin untuk mengakses halaman ini.']);
-            } else {
-                return redirect()->route('login_karyawan')->withErrors(['error' => 'Anda tidak memiliki izin untuk mengakses halaman ini.']);
-            }
+            abort(403, 'Unauthorized access.');
         }
+        
 
         return $next($request);
     }

@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 // Route::get('/insert-users', function() {
 //     DB::table('user')->insert([
-//         ['nama' => 'Admin', 'email' => 'admin@maranatha.ac.id', 'password' => bcrypt('password123'), 'id_roles' => 1, 'created_at' => now(), 'updated_at' => now()],
+//         ['nama' => 'Admin', 'email' => '10000001@maranatha.ac.id', 'password' => bcrypt('password123'), 'id_roles' => 1, 'created_at' => now(), 'updated_at' => now()],
 //     ]);
 //     return "Users inserted!";
 // });
@@ -144,14 +144,25 @@ Route::middleware([AuthenticateRole::class . ':1'])->group(function () {
 // Route Ketua Program Studi
 Route::middleware([AuthenticateRole::class . ':2'])->group(function () {
     Route::get('/kaprodi/index', [KaprodiController::class, 'index'])->name('kaprodi.index');
-    Route::post('/kaprodi/terima/{id}', [KaprodiController::class, 'acc'])->name('surat.acc');
-    Route::post('/kaprodi/tolak/{id}', [KaprodiController::class, 'tolakSurat'])->name('surat.tolak');
+
+    // Kelola Surat Kaprodi
+    Route::get('/kaprodi/kelolaSurat/index', [KaprodiController::class, 'kelolaSurat'])->name('kaprodi.kelolaSurat');
+    Route::post('/kaprodi/terima/{id}', [KaprodiController::class, 'kaprodi_acc'])->name('kaprodi.surat_acc');
+    Route::post('/kaprodi/tolak/{id}', [KaprodiController::class, 'kaprodi_tolakSurat'])->name('kaprodi.surat_tolak');
 });
 
 
 // Route Tata Usaha
 Route::middleware([AuthenticateRole::class . ':3'])->group(function () {
     Route::get('/tu/index', [TUController::class, 'index'])->name('tu.index');
+
+    // Kelola Surat TU
+    Route::get('/tu/kelolaSurat/index', [TuController::class, 'kelolaSurat'])->name('tu.kelolaSurat');
+    // Form kirim PDF
+    Route::get('/tu/create/{id}', [TUController::class, 'create'])->name('tu.form_kirim_pdf');
+    // Aksi kirim PDF
+    Route::post('/tu/surat/{id}/kirim', [TUController::class, 'store'])->name('tu.kirim_pdf');
+
 });
 
 
@@ -199,6 +210,10 @@ Route::middleware([AuthenticateRole::class . ':4'])->group(function () {
     Route::get('/mahasiswa/dashboard', function () {
         return view('mahasiswa.index');
     })->name('mahasiswa.dashboard');
+
+
+    // Histori Pengajuan
+    Route::get('/mahasiswa/histori/index', [MahasiswaController::class, 'histori'])->name('mahasiswa.histori/index');
 
     // logout
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

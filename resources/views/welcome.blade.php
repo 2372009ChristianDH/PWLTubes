@@ -63,15 +63,7 @@
                         @endif
                     </div>
                 </div>
-    
-                @if (Route::has('register'))
-                    <div class="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
-                        Belum punya akun?
-                        <a href="{{ route('register') }}" class="underline hover:text-[#1b1b18] dark:hover:text-white transition">
-                            Daftar Sekarang
-                        </a>
-                    </div>
-                @endif
+
             </div>
         </div>
     </body>

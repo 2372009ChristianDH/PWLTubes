@@ -1,22 +1,109 @@
 @extends('layouts.index')
 
 @section('content')
-@if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show bg-success text-white" role="alert">
-        <strong>{{ session('success') }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="container py-5">
+        <h1 class="fw-bold mb-4 text-center">Dashboard Tata Usaha</h1>
+
+        {{-- Statistik singkat --}}
+        <div class="row text-center mb-5">
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Surat</h5>
+                        <h2 class="text-primary">{{ $totalSurat }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">Menunggu Persetujuan TU</h5>
+                        <h2 class="text-warning">{{ $pendingSurat }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">Disetujui TU</h5>
+                        <h2 class="text-success">{{ $approvedSurat }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">Ditolak</h5>
+                        <h2 class="text-danger">{{ $rejectedSurat }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Tabel surat terbaru --}}
+        <div class="card shadow-sm border-0 mb-4 container-fluid px-5 py-4">
+            <div class="card-header bg-primary text-white fw-bold">
+                Daftar Surat Menunggu Proses Tata Usaha
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Mahasiswa</th>
+                            <th>Jenis Surat</th>
+                            <th>Tanggal Permohonan</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $no = 1; @endphp
+                        @foreach ($suratTerbaru as $surat)
+                            @if ($surat->suratDetail->status_persetujuan == 'Sedang Diproses Tata Usaha')
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $surat->user->nama }}</td>
+                                    <td>{{ ucfirst($surat->jenis_surat) }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($surat->suratDetail->tgl_permohonan)->format('d M Y') }}
+                                    </td>
+                                    <td>
+                                        @if ($surat->suratDetail->status_persetujuan == 'Menunggu Persetujuan Kaprodi')
+                                            <span class="text-warning">📋
+                                                {{ $surat->suratDetail->status_persetujuan }}</span>
+                                        @elseif ($surat->suratDetail->status_persetujuan == 'Sedang Diproses Tata Usaha')
+                                            <span class="text-primary">🛠️
+                                                {{ $surat->suratDetail->status_persetujuan }}</span>
+                                        @elseif ($surat->suratDetail->status_persetujuan == 'Disetujui')
+                                            <span class="text-success">✅
+                                                {{ $surat->suratDetail->status_persetujuan }}</span>
+                                        @elseif ($surat->suratDetail->status_persetujuan == 'Surat Ditolak')
+                                            <span class="text-danger">❌
+                                                {{ $surat->suratDetail->status_persetujuan }}</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
+
+                        @if ($pendingSurat == 0)
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">Belum Ada Pengajuan Surat.</td>
+                            </tr>
+                        @endif
+
+
+                    </tbody>
+                </table>
+                <div class="text-end">
+                    <a href="{{ route('kaprodi.index') }}" class="btn btn-outline-primary">Lihat Semua Surat</a>
+                </div>
+            </div>
+        </div>
     </div>
-@endif
-    <h3 class="fw-bold mb-3" style="text-align: center; font-size: 40px; padding-top:100px; color:rgb(0, 0, 112);">Dashboard Tata Usaha</h3>
+@endsection
 
+@section('ExtraCSS')
+@endsection
 
-    
-    
-
-    @endsection
-
-    @section('ExtraCSS')
-    @endsection
-
-    @section('ExtraJS')
-    @endsection
+@section('ExtraJS')
+@endsection

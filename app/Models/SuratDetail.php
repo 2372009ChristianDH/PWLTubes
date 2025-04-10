@@ -16,6 +16,7 @@ class SuratDetail extends Model
         'status_persetujuan',
         'keterangan',
         'tgl_persetujuan',
+        'file_surat',
     ];
 
     public function surat()

@@ -24,34 +24,34 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
-                @if (Auth::user()->id_roles == 4)
-                    <li class="nav-item">
-                        <a href="{{ route('mahasiswaList') }}" role="button" class="btn btn-primary">
-                            <i class="fas fa-home"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                @elseif(Auth::user()->id_roles == 1)
+                @if (Auth::user()->id_roles == 1)
                     <li class="nav-item">
                         <a href="{{ route('admin.index') }}" role="button" class="btn btn-primary">
                             <i class="fas fa-home"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    {{-- @elseif(Auth::user()->id_roles == 4)
+                @elseif(Auth::user()->id_roles == 2)
+                    <li class="nav-item">
+                        <a href="{{ route('kaprodi.index') }}" role="button" class="btn btn-primary">
+                            <i class="fas fa-home"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                @elseif(Auth::user()->id_roles == 3)
+                    <li class="nav-item">
+                        <a href="{{ route('tu.index') }}" role="button" class="btn btn-primary">
+                            <i class="fas fa-home"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                @elseif (Auth::user()->id_roles == 4)
                     <li class="nav-item">
                         <a href="{{ route('mahasiswaList') }}" role="button" class="btn btn-primary">
                             <i class="fas fa-home"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                @elseif(Auth::user()->id_roles == 4)
-                    <li class="nav-item">
-                        <a href="{{ route('mahasiswaList') }}" role="button" class="btn btn-primary">
-                            <i class="fas fa-home"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li> --}}
                 @endif
 
 
@@ -168,7 +168,6 @@
                             </ul>
                         </div>
                     </li>
-
                     {{-- <li class="nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarLayoutsLainnya">
                             <i class="fas fa-th-list"></i>
@@ -193,6 +192,46 @@
                 @endif
 
 
+                @if (Auth::user()->id_roles == 2)
+                    <li class="nav-item">
+                        <a data-bs-toggle="collapse" href="#sidebarLayoutsMahasiswa">
+                            <i class="fas fa-file-alt"></i>
+                            <p>Surat</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="sidebarLayoutsMahasiswa">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="{{ route('kaprodi.kelolaSurat') }}">
+                                        <span class="sub-item">Surat</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+
+
+                @if (Auth::user()->id_roles == 3)
+                    <li class="nav-item">
+                        <a data-bs-toggle="collapse" href="#sidebarLayoutsMahasiswa">
+                            <i class="fas fa-file-alt"></i>
+                            <p>Surat</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="sidebarLayoutsMahasiswa">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="{{ route('tu.kelolaSurat') }}">
+                                        <span class="sub-item">Surat</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+
+
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#sidebarLayouts">
                         <i class="fas fa-th-list"></i>
@@ -202,7 +241,7 @@
                     <div class="collapse" id="sidebarLayouts">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="sidebar-style-2.html">
+                                <a href="his">
                                     <span class="sub-item">Histori Pengajuan</span>
                                 </a>
                             </li>

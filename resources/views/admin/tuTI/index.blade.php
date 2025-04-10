@@ -1,75 +1,77 @@
 @extends('layouts.index')
 
 @section('content')
-    <h1 class="fw-bold mb-3" style="text-align: center; font-size: 40px; padding-top:100px; color:rgb(0, 0, 112);">Data Tata Usaha Teknik Informatika</h1>
+    <div class="container py-5">
+    <h3 class="fw-bold mb-4" style="text-align: center; font-size: 40px; padding-top:50px; color:rgb(0, 0, 112);">Data Tata Usaha Teknik Informatika</h3>
 
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show bg-success text-white" role="alert">
-            <strong>{{ session('success') }}</strong> 
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ session('success') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
-    <div class="card-header">
-        <div class="d-flex align-items-center">
-            <a href="{{ route('tu.createtuTI') }}" class="btn btn-primary btn-round ms-auto" style="margin-right: 100px; font-size: 17px;">
-                <i class="fa fa-plus"></i> Tambah TU 
-            </a>
-        </div>
-    </div>
-    
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-end mb-3">
+                    <a href="{{ route('tu.createtuTI') }}" class="btn btn-primary">
+                        <i class="fa fa-plus me-1"></i> Tambah TU
+                    </a>
+                </div>
 
-    <!-- Tab content -->
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="keaktifan" role="tabpanel" aria-labelledby="keaktifan-tab">
-            <div class="table-responsive mt-4">
-                <table id="table-keaktifan" class="table table-bordered table-hover table-striped"
-                    style="width: 90%; margin: auto;">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>NIK</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Tahun Mulai</th></th>
-                            <th>Tahun Selesai</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody> 
-                    @foreach ($datatuTI as $data)
-                        <tr>
-                            <td>{{ $data->nik }}</td>
-                            <td>{{ $data->user->nama }}</td>
-                            <td>{{ $data->user->email }}</td>
-                            <td>{{ $data->tahun_mulai }}</td>
-                            <td>{{ $data->tahun_selesai }}</td>
-                            <td>
-
-                            @if ($data->user->id_roles == 3)
-                                <!-- Tombol Edit -->
-                                <a href="{{ route('tu.edittuTI', ['id' => $data->user->id]) }}" class="btn btn-warning btn-sm">
-                                Edit                                             
-                                </a>
-                                <!-- Tombol Hapus -->
-                                <form action="{{ route('tu.deletetuTI', ['id' => $data->user->id]) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin mencabut jabatan kaprodi ini?');">
-                                        <i class="fa fa-trash"></i> Cabut Jabatan
-                                    </button>
-                                </form>
+                <div class="table-responsive">
+                    <table id="table-tu" class="table table-hover table-bordered align-middle">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th>NIK</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Tahun Mulai</th>
+                                <th>Tahun Selesai</th>
+                                <th style="width: 180px;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($datatuTI as $data)
+                                <tr>
+                                    <td>{{ $data->nik }}</td>
+                                    <td>{{ $data->user->nama }}</td>
+                                    <td>{{ $data->user->email }}</td>
+                                    <td>{{ $data->tahun_mulai }}</td>
+                                    <td>{{ $data->tahun_selesai }}</td>
+                                    <td class="text-center">
+                                        @if ($data->user->id_roles == 3)
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <a href="{{ route('tu.edittuTI', ['id' => $data->user->id]) }}" class="btn btn-warning btn-sm d-flex align-items-center">
+                                                    <i class="fa fa-edit me-1"></i> Edit
+                                                </a>
+                                                <form action="{{ route('tu.deletetuTI', ['id' => $data->user->id]) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin mencabut jabatan TU ini?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center">
+                                                        <i class="fa fa-trash me-1"></i> Cabut
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                            @if ($datatuTI->isEmpty())
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted">Belum ada data Tata Usaha.</td>
+                                </tr>
                             @endif
-                        </td>
-                        </tr>
-                    @endforeach                    
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
 
-    @section('ExtraCSS')
-    @endsection
+@section('ExtraCSS')
+@endsection
 
-    @section('ExtraJS')
-    @endsection
+@section('ExtraJS')
+@endsection
