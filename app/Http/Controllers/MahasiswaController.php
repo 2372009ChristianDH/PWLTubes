@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use App\Models\Surat;
 use App\Models\User;
+use App\Models\SuratDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Import Auth
 
@@ -54,6 +55,7 @@ class MahasiswaController extends Controller
 
         $user = Auth::user();
 
+        // Simpan data ke tabel surat
         $surat = new Surat();
         $surat->id_users = $user->id;
         $surat->jenis_surat = $validatedData['jenis_surat'];
@@ -61,8 +63,18 @@ class MahasiswaController extends Controller
         $surat->periode = $validatedData['periode'];
         $surat->alamat = $validatedData['alamat'];
         $surat->keperluan_pembuatan = $validatedData['keperluan_pembuatan'];
+        $surat->save(); // Simpan ke database
 
-        $surat->save();
+
+        $surat_detail = new SuratDetail();
+        $surat_detail->id_surat = $surat->id;
+        $surat_detail->jenis_surat = $validatedData['jenis_surat'];
+        $surat_detail->tgl_permohonan = now();
+        $surat_detail->status_persetujuan = 'pending';
+        $surat_detail->keterangan = null;
+        $surat_detail->tgl_persetujuan = null;
+        $surat_detail->save(); // Simpan ke database
+
 
         return redirect(route('mahasiswaList'))->with('success', 'Surat keaktifan berhasil disimpan.');
     }
@@ -87,6 +99,15 @@ class MahasiswaController extends Controller
         $surat->keperluan_pembuatan = $validatedData['keperluan_pembuatan'];
 
         $surat->save();
+
+        $surat_detail = new SuratDetail();
+        $surat_detail->id_surat = $surat->id;
+        $surat_detail->jenis_surat = $validatedData['jenis_surat'];
+        $surat_detail->tgl_permohonan = now();
+        $surat_detail->status_persetujuan = 'pending';
+        $surat_detail->keterangan = null;
+        $surat_detail->tgl_persetujuan = null;
+        $surat_detail->save(); // Simpan ke database
 
         return redirect(route('mahasiswaList'))->with('success', 'Surat Laporan Hasil Studi berhasil disimpan.');
     }
@@ -120,6 +141,15 @@ class MahasiswaController extends Controller
 
         $surat->save();
 
+        $surat_detail = new SuratDetail();
+        $surat_detail->id_surat = $surat->id;
+        $surat_detail->jenis_surat = $validatedData['jenis_surat'];
+        $surat_detail->tgl_permohonan = now();
+        $surat_detail->status_persetujuan = 'pending';
+        $surat_detail->keterangan = null;
+        $surat_detail->tgl_persetujuan = null;
+        $surat_detail->save(); // Simpan ke database
+
         return redirect(route('mahasiswaList'))->with('success', 'Surat Pengantar Tugas Mata Kuliah berhasil disimpan.');
     }
 
@@ -143,6 +173,15 @@ class MahasiswaController extends Controller
         $surat->tgl_kelulusan = $validatedData['tgl_kelulusan'];
 
         $surat->save();
+
+        $surat_detail = new SuratDetail();
+        $surat_detail->id_surat = $surat->id;
+        $surat_detail->jenis_surat = $validatedData['jenis_surat'];
+        $surat_detail->tgl_permohonan = now();
+        $surat_detail->status_persetujuan = 'pending';
+        $surat_detail->keterangan = null;
+        $surat_detail->tgl_persetujuan = null;
+        $surat_detail->save(); // Simpan ke database
 
         return redirect(route('mahasiswaList'))->with('success', 'Surat Kelulusan berhasil disimpan.');
     }

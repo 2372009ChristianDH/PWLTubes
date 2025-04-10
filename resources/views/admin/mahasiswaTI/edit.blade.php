@@ -4,7 +4,7 @@
     <div class="container">
         <div class="page-inner">
             <div class="page-header">
-                <h3 class="fw-bold mb-3" style="padding-right: 10px">Tambah Mahasiswa Baru Teknik Informatika</h3>
+                <h3 class="fw-bold mb-3" style="padding-right: 10px">Edit Mahasiswa Teknik Informatika</h3>
                 <ul class="breadcrumbs mb-3">
                     <li class="nav-home"><a href="#http://127.0.0.1:8000/mahasiswa"><i class="icon-home"></i></a></li>
                 </ul>
@@ -14,23 +14,26 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('mahasiswa.storeMahasiswaTI') }}" method="POST">
-                                @csrf
+                        <form action="{{ route('mahasiswa.updateMahasiswaTI', ['id' => $mahasiswa->id]) }}" method="POST">
+                        @csrf
+                        @method('POST')
                                 <!-- Input NRP -->
                                 <div class="mb-3">
                                     <label for="nrp" class="form-label">NRP</label>
-                                    <input type="text" name="nrp" class="form-control @error('nrp') is-invalid @enderror" id="nrp" value="{{ old('nrp') }}">
+                                    <input type="text" name="nrp" class="form-control @error('nrp') is-invalid @enderror" 
+                                        id="nrp" value="{{ old('nrp', $mahasiswa->nrp) }}" readonly>
                                     @error('nrp')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
+
                                 
                                 <!-- Input Nama -->
                                 <div class="mb-3">
                                     <label for="nama" class="form-label">Nama</label>
-                                    <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" id="nama" value="{{ old('nama') }}">
+                                    <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" id="nama" value="{{ old('nama', $mahasiswa->user->nama) }}">
                                     @error('nama')
                                         <div class="invalid-feedback">
                                             {{ $message }}

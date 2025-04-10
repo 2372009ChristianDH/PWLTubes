@@ -4,7 +4,7 @@
     <div class="container">
         <div class="page-inner">
             <div class="page-header">
-                <h3 class="fw-bold mb-3" style="padding-right: 10px">Tambah Mahasiswa Baru Teknik Informatika</h3>
+                <h3 class="fw-bold mb-3" style="padding-right: 10px">Tambah Mahasiswa Baru Sistem Informasi</h3>
                 <ul class="breadcrumbs mb-3">
                     <li class="nav-home"><a href="#http://127.0.0.1:8000/mahasiswa"><i class="icon-home"></i></a></li>
                 </ul>
@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('mahasiswa.storeMahasiswaTI') }}" method="POST">
+                            <form action="{{ route('mahasiswa.storeMahasiswaSI') }}" method="POST">
                                 @csrf
                                 <!-- Input NRP -->
                                 <div class="mb-3">

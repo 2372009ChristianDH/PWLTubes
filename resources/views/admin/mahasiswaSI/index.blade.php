@@ -7,12 +7,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
-    <h3 class="fw-bold mb-3" style="text-align: center; font-size: 40px; padding-top:100px; color:rgb(0, 0, 112);">Data Mahasiswa Teknik Informatika</h3>
+    <h3 class="fw-bold mb-3" style="text-align: center; font-size: 40px; padding-top:100px; color:rgb(0, 0, 112);">Data Mahasiswa Sistem Informasi</h3>
 
 
     <div class="card-header">
         <div class="d-flex align-items-center">
-            <a href="{{ route('mahasiswa.createMahasiswaTI') }}" class="btn btn-primary btn-round ms-auto" style="margin-right: 100px; font-size: 17px;">
+            <a href="{{ route('mahasiswa.createMahasiswaSI') }}" class="btn btn-primary btn-round ms-auto" style="margin-right: 100px; font-size: 17px;">
                 <i class="fa fa-plus"></i> Tambah Mahasiswa
             </a>
         </div>
@@ -27,7 +27,7 @@
                     style="width: 90%; margin: auto;">
                     <thead class="thead-dark">
                         <tr>
-                            <th>nrp</th>
+                            <th>NRP</th>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Aksi</th>
@@ -39,22 +39,22 @@
                             <td>{{ $data->nrp }}</td>
                             <td>{{ $data->user->nama }}</td>
                             <td>{{ $data->user->email }}</td>
+
                             <td>
                             <!-- Tombol Edit -->
-                            <a href="{{ route('mahasiswa.editMahasiswaTI', ['id' => $data->user->id]) }}" class="btn btn-warning btn-sm">
-                            Edit                                             
+                            <a href="{{ route('mahasiswa.editMahasiswaSI' , ['id' => $data->user->id]) }}" class="btn btn-warning btn-sm">
+                                <i class="fa fa-edit"></i> Edit
                             </a>
 
-
                             <!-- Tombol Hapus -->
-                            <form action="{{ route('mahasiswa.deleteMahasiswaTI', ['id' => $data->user->id]) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('mahasiswa.deleteMahasiswaSI', ['id' => $data->user->id] ) }}" method="POST" style="display:inline;" 
+                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus mahasiswa ini?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus mahasiswa ini?');">
+                                <button type="submit" class="btn btn-danger btn-sm">
                                     <i class="fa fa-trash"></i> Hapus
                                 </button>
                             </form>
-
                         </td>
                         </tr>
                     @endforeach                    

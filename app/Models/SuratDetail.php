@@ -20,11 +20,17 @@ class SuratDetail extends Model
 
     public function surat()
     {
-        return $this->belongsTo(Surat::class, 'id_surat');
+        return $this->belongsTo(Surat::class, 'id_surat','id');
     }
 
     public function user()
     {
         return $this->belongsTo(User::class, 'id_users');
     }
+
+    public function suratDetail()
+    {
+        return $this->hasOne(SuratDetail::class, 'id_surat','id');
+    }
+
 }

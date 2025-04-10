@@ -114,12 +114,12 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="icon-menu.html">
-                                        <span class="sub-item">Sistem Informatika</span>
+                                    <a href=" {{ route('data.mahasiswaSI') }} ">
+                                        <span class="sub-item">Sistem Informasi</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="icon-menu.html">
+                                    <a href="{{ route('data.mahasiswaIK') }}">
                                         <span class="sub-item">Ilmu Komputer</span>
                                     </a>
                                 </li>
@@ -136,13 +136,23 @@
                         <div class="collapse" id="sidebarLayoutsKaryawan">
                             <ul class="nav nav-collapse">
                                 <li>
-                                    <a href="sidebar-style-2.html">
-                                        <span class="sub-item">Histori Pengajuan</span>
+                                    <a href="{{ route('data.kaprodiTI') }}">
+                                        <span class="sub-item">Data Ketua Program Studi TI</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <span class="sub-item">Data Ketua Program Studi SI</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <span class="sub-item">Data Ketua Program Studi IK</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="icon-menu.html">
-                                        <span class="sub-item">Status Surat</span>
+                                        <span class="sub-item">Data Tata Usaha<</span>
                                     </a>
                                 </li>
                             </ul>

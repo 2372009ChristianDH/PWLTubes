@@ -43,6 +43,7 @@
                             <th>Periode</th>
                             <th>Alamat</th>
                             <th>Keperluan Pembuatan</th>
+                            <th>Status Surat</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,6 +53,7 @@
                                 <td>{{ $item->periode }}</td>
                                 <td>{{ $item->alamat }}</td>
                                 <td>{{ $item->keperluan_pembuatan }}</td>
+                                <!-- <td>{{ $item->surat_detail->status_persetujuan ?? 'Pending' }}</td> -->
                             </tr>
                         @endforeach
                     </tbody>

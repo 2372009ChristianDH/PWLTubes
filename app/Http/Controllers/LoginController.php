@@ -13,12 +13,12 @@ class LoginController extends Controller
 {
     public function index_karyawan()
     {
-        return view('login_karyawan');
+        return view('auth/login_karyawan');
     }
 
     public function index_mahasiswa()
     {
-        return view('login_mahasiswa');
+        return view('auth/login_mahasiswa');
     }
 
     public function login_karyawan(Request $request)
@@ -53,7 +53,7 @@ class LoginController extends Controller
             }
         } else {
             // Return error if NIK is not found
-            return back()->withErrors(['nik' => 'NIK not found.']);
+            return back()->withErrors(['nik' => 'NRP not found.']);
         }
     }
 
