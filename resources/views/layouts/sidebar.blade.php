@@ -3,10 +3,12 @@
     <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo">
-                <img src="{{ asset('assets/img/kaiadmin/logo_light.svg') }}" alt="navbar brand" class="navbar-brand"
-                    height="20" />
+            <a href="index.html" class="logo d-flex align-items-center gap-2">
+                <img src="{{ asset('assets/img/kaiadmin/surat.logo.png') }}" alt="SmartLetter Logo"
+                    class="navbar-brand" style="width : 70px" />
+                <span class="text-white fw-bold fs-5">SmartLetter</span>
             </a>
+            
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
                     <i class="gg-menu-right"></i>
@@ -231,28 +233,29 @@
                     </li>
                 @endif
 
-
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#sidebarLayouts">
-                        <i class="fas fa-th-list"></i>
-                        <p>Lainnya</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="sidebarLayouts">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="his">
-                                    <span class="sub-item">Histori Pengajuan</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="icon-menu.html">
-                                    <span class="sub-item">Status Surat</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                @if (Auth::user()->id_roles == 4)
+                    <li class="nav-item">
+                        <a data-bs-toggle="collapse" href="#sidebarLayouts">
+                            <i class="fas fa-th-list"></i>
+                            <p>Lainnya</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="sidebarLayouts">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="/mahasiswa/histori/index">
+                                        <span class="sub-item">Histori Pengajuan</span>
+                                    </a>                                    
+                                </li>
+                                <li>
+                                    <a href="icon-menu.html">
+                                        <span class="sub-item">Status Surat</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

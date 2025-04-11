@@ -9,13 +9,29 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\LoginController;
-use App\Http\Middleware\AuthenticateRole;
-use App\Http\Controllers\PDFController;
+use App\Http\Middleware\AuthenticateRole;   
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+
+Route::get('/lihat-surat/{filename}', function ($filename) {
+    $path = storage_path('app/public/surat_pdf/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    return Response::file($path);
+});
+
+
 
 // Route::get('/insert-users', function() {
 //     DB::table('user')->insert([
@@ -168,6 +184,7 @@ Route::middleware([AuthenticateRole::class . ':3'])->group(function () {
 
 Route::middleware([AuthenticateRole::class . ':4'])->group(function () {
     Route::get('/mahasiswa/index', [MahasiswaController::class, 'index'])->name('mahasiswaList');
+    Route::get('/mahasiswa/histori/index', [MahasiswaController::class, 'histori']);
     // Store Form Mahasiswa
     Route::get('/mahasiswa/create_keaktifan', function () {
         return view('mahasiswa.create_keaktifan');

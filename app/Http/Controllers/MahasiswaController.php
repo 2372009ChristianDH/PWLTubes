@@ -19,6 +19,7 @@ class MahasiswaController extends Controller
     {
         $userId = Auth::user()->id;
         $tanggalAwal = $request->input('tanggal_awal');
+        
     
         // Ambil semua surat user yang termasuk 4 jenis itu
         $allSurat = Surat::with('suratDetail')
@@ -38,6 +39,37 @@ class MahasiswaController extends Controller
         $suratKelulusan = $allSurat->where('jenis_surat', 'lulus');
     
         return view('mahasiswa.index', compact(
+            'suratKeaktifan',
+            'suratLaporanHasilStudi',
+            'suratPengantarTugas',
+            'suratKelulusan',
+        ));
+    }
+
+
+    public function histori(Request $request)
+    {
+        $userId = Auth::user()->id;
+        $tanggalAwal = $request->input('tanggal_awal');
+    
+        // Ambil semua surat user yang termasuk 4 jenis itu
+        $allSurat = Surat::with('suratDetail')
+            ->whereIn('jenis_surat', ['keaktifan', 'lhs', 'ptmk', 'lulus'])
+            ->where('id_users', $userId)
+            ->when($tanggalAwal, function ($query) use ($tanggalAwal) {
+                $query->whereHas('suratDetail', function ($subQuery) use ($tanggalAwal) {
+                    $subQuery->whereDate('tgl_permohonan', '=', $tanggalAwal);
+                });
+            })
+            ->get();
+    
+        // Pisahkan datanya berdasarkan jenis_surat
+        $suratKeaktifan = $allSurat->where('jenis_surat', 'keaktifan');
+        $suratLaporanHasilStudi = $allSurat->where('jenis_surat', 'lhs');
+        $suratPengantarTugas = $allSurat->where('jenis_surat', 'ptmk');
+        $suratKelulusan = $allSurat->where('jenis_surat', 'lulus');
+    
+        return view('mahasiswa.histori.index', compact(
             'suratKeaktifan',
             'suratLaporanHasilStudi',
             'suratPengantarTugas',

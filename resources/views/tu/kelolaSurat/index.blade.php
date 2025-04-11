@@ -116,13 +116,14 @@
                                                             @if ($item->suratDetail->status_persetujuan == 'Surat Ditolak')
                                                                 <p><strong>Keterangan:</strong>
                                                                     {{ $item->suratDetail->keterangan }}</p>
-                                                            @else
+                                                            @elseif ($item->suratDetail->status_persetujuan == 'Disetujui')
                                                                 <p><strong>Keterangan:</strong>
                                                                     {{ $item->suratDetail->keterangan }}</p>
-                                                                <a href="{{ asset('storage/surat_pdf/' . $item->suratDetail->file_surat) }}"
+                                                                <a href="{{ url('lihat-surat/' . $item->suratDetail->file_surat) }}"
                                                                     target="_blank" class="btn btn-primary btn-sm">Lihat
                                                                     Surat</a>
                                                             @endif
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
@@ -226,13 +227,14 @@
                                                             @if ($item->suratDetail->status_persetujuan == 'Surat Ditolak')
                                                                 <p><strong>Keterangan:</strong>
                                                                     {{ $item->suratDetail->keterangan }}</p>
-                                                            @else
+                                                            @elseif ($item->suratDetail->status_persetujuan == 'Disetujui')
                                                                 <p><strong>Keterangan:</strong>
                                                                     {{ $item->suratDetail->keterangan }}</p>
-                                                                <a href="{{ asset('storage/surat_pdf/' . $item->suratDetail->file_surat) }}"
+                                                                <a href="{{ url('lihat-surat/' . $item->suratDetail->file_surat) }}"
                                                                     target="_blank" class="btn btn-primary btn-sm">Lihat
                                                                     Surat</a>
                                                             @endif
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
@@ -340,21 +342,21 @@
                                                             @if ($item->suratDetail->status_persetujuan == 'Surat Ditolak')
                                                                 <p><strong>Keterangan:</strong>
                                                                     {{ $item->suratDetail->keterangan }}</p>
-                                                            @else
+                                                            @elseif ($item->suratDetail->status_persetujuan == 'Disetujui')
                                                                 <p><strong>Keterangan:</strong>
                                                                     {{ $item->suratDetail->keterangan }}</p>
-                                                                <a href="{{ asset('storage/surat_pdf/' . $item->suratDetail->file_surat) }}"
+                                                                <a href="{{ url('lihat-surat/' . $item->suratDetail->file_surat) }}"
                                                                     target="_blank" class="btn btn-primary btn-sm">Lihat
                                                                     Surat</a>
                                                             @endif
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Tutup</button>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Tutup</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                         </tr>
                                     @endforeach
                                     @if ($suratPengantarTugas->isEmpty())
@@ -452,13 +454,14 @@
                                                             @if ($item->suratDetail->status_persetujuan == 'Surat Ditolak')
                                                                 <p><strong>Keterangan:</strong>
                                                                     {{ $item->suratDetail->keterangan }}</p>
-                                                            @else
+                                                            @elseif ($item->suratDetail->status_persetujuan == 'Disetujui')
                                                                 <p><strong>Keterangan:</strong>
                                                                     {{ $item->suratDetail->keterangan }}</p>
-                                                                <a href="{{ asset('storage/surat_pdf/' . $item->suratDetail->file_surat) }}"
+                                                                <a href="{{ url('lihat-surat/' . $item->suratDetail->file_surat) }}"
                                                                     target="_blank" class="btn btn-primary btn-sm">Lihat
                                                                     Surat</a>
                                                             @endif
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
