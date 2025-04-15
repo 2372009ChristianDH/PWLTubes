@@ -28,7 +28,7 @@ Route::get('/lihat-surat/{filename}', function ($filename) {
         abort(404);
     }
 
-    return Response::download($path);
+    return Response::file($path);
 });
 
 
