@@ -9,7 +9,7 @@ class Karyawan extends Model
     protected $table = 'karyawan';
 
     protected $primaryKey = 'id';
-    protected $fillable = ['nik', 'id_program_studi', 'id_users', 'tahun_mulai', 'tahun_selesai'];
+    protected $fillable = ['nik', 'id_program_studi', 'id_users', 'status_karyawan', 'tahun_mulai', 'tahun_selesai'];
 
 
     public function user()

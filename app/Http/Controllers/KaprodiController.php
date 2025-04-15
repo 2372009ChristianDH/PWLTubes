@@ -26,7 +26,7 @@ class KaprodiController extends Controller
         $allSurat = Surat::whereIn('id_users', $user_ids)->with('suratDetail', 'user')->get();
 
         $totalSurat = $allSurat->count();
-        $pendingSurat = $allSurat->where('suratDetail.status_persetujuan', 'Disetujui')->count();
+        $pendingSurat = $allSurat->where('suratDetail.status_persetujuan', 'Menunggu Persetujuan Kaprodi')->count();
         $approvedSurat = $allSurat->where('suratDetail.status_persetujuan', 'Sedang Diproses Tata Usaha')->count();
         $rejectedSurat = $allSurat->where('suratDetail.status_persetujuan', 'Surat Ditolak')->count();
 

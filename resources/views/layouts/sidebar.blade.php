@@ -205,7 +205,7 @@
                             <ul class="nav nav-collapse">
                                 <li>
                                     <a href="{{ route('kaprodi.kelolaSurat') }}">
-                                        <span class="sub-item">Surat</span>
+                                        <span class="sub-item">Kelola Surat</span>
                                     </a>
                                 </li>
                             </ul>
@@ -225,7 +225,7 @@
                             <ul class="nav nav-collapse">
                                 <li>
                                     <a href="{{ route('tu.kelolaSurat') }}">
-                                        <span class="sub-item">Surat</span>
+                                        <span class="sub-item">Kelola Surat</span>
                                     </a>
                                 </li>
                             </ul>

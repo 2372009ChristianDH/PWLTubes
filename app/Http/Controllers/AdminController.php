@@ -18,8 +18,15 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $jumlahMahasiswa = Mahasiswa::count();
+        $jumlahKaryawan = Karyawan::where('status_karyawan', 'Aktif')->count();
+    
+        return view('admin.index', compact(
+            'jumlahMahasiswa',
+            'jumlahKaryawan'
+        ));
     }
+    
 
 // controller Mahasiswa TI
     public function DataMahasiswaTI()
@@ -497,6 +504,7 @@ class AdminController extends Controller
             $user = User::findOrFail($id);
     
             $user->update(['id_roles'=> 5]);
+            $karyawan->update(['status_karyawan'=> 'Nonaktif']);
             $karyawan->update(['tahun_selesai'=> now()]);
     
             return redirect()->route('data.kaprodiTI')->with('success', 'Jabatan kaprodi berhasil dicabut.');
@@ -621,9 +629,10 @@ class AdminController extends Controller
             $user = User::findOrFail($id);
     
             $user->update(['id_roles'=> 5]);
+            $karyawan->update(['status_karyawan'=> 'Nonaktif']);
             $karyawan->update(['tahun_selesai'=> now()]);
     
-            return redirect()->route('data.kaprodiTI')->with('success', 'Jabatan kaprodi berhasil dicabut.');
+            return redirect()->route('data.kaprodiSI')->with('success', 'Jabatan kaprodi berhasil dicabut.');
         } catch (\Exception $e) {
             return back()->with('error', 'Gagal menghapus data: ' . $e->getMessage());
         }
@@ -748,9 +757,10 @@ class AdminController extends Controller
             $user = User::findOrFail($id);
     
             $user->update(['id_roles'=> 5]);
+            $karyawan->update(['status_karyawan'=> 'Nonaktif']);
             $karyawan->update(['tahun_selesai'=> now()]);
     
-            return redirect()->route('data.kaprodiTI')->with('success', 'Jabatan kaprodi berhasil dicabut.');
+            return redirect()->route('data.kaprodiIK')->with('success', 'Jabatan kaprodi berhasil dicabut.');
         } catch (\Exception $e) {
             return back()->with('error', 'Gagal menghapus data: ' . $e->getMessage());
         }
@@ -875,9 +885,10 @@ class AdminController extends Controller
              $user = User::findOrFail($id);
      
              $user->update(['id_roles'=> 6]);
+             $karyawan->update(['status_karyawan'=> 'Nonaktif']);
              $karyawan->update(['tahun_selesai'=> now()]);
      
-             return redirect()->route('data.kaprodiTI')->with('success', 'Jabatan kaprodi berhasil dicabut.');
+             return redirect()->route('data.tuTI')->with('success', 'Jabatan kaprodi berhasil dicabut.');
          } catch (\Exception $e) {
              return back()->with('error', 'Gagal menghapus data: ' . $e->getMessage());
          }
@@ -999,9 +1010,10 @@ class AdminController extends Controller
              $user = User::findOrFail($id);
      
              $user->update(['id_roles'=> 6]);
+             $karyawan->update(['status_karyawan'=> 'Nonaktif']);
              $karyawan->update(['tahun_selesai'=> now()]);
      
-             return redirect()->route('data.kaprodiTI')->with('success', 'Jabatan kaprodi berhasil dicabut.');
+             return redirect()->route('data.tuSI')->with('success', 'Jabatan kaprodi berhasil dicabut.');
          } catch (\Exception $e) {
              return back()->with('error', 'Gagal menghapus data: ' . $e->getMessage());
          }
@@ -1122,9 +1134,10 @@ class AdminController extends Controller
              $user = User::findOrFail($id);
      
              $user->update(['id_roles'=> 6]);
+             $karyawan->update(['status_karyawan'=> 'Nonaktif']);
              $karyawan->update(['tahun_selesai'=> now()]);
      
-             return redirect()->route('data.kaprodiTI')->with('success', 'Jabatan kaprodi berhasil dicabut.');
+             return redirect()->route('data.tuIK')->with('success', 'Jabatan kaprodi berhasil dicabut.');
          } catch (\Exception $e) {
              return back()->with('error', 'Gagal menghapus data: ' . $e->getMessage());
          }

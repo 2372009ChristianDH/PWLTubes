@@ -2,10 +2,8 @@
 
 @section('content')
     <div class="container py-5">
-        <h1 class="fw-bold mb-4 text-center">Dashboard Kaprodi</h1>
-
         {{-- Statistik singkat --}}
-        <div class="row text-center mb-5">
+        <div class="row text-center mb-5" style="margin-top: 50px">
             <div class="col-md-3">
                 <div class="card shadow-sm border-0">
                     <div class="card-body">

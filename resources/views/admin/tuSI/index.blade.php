@@ -26,6 +26,7 @@
                                 <th>NIK</th>
                                 <th>Nama</th>
                                 <th>Email</th>
+                                <th>Status</th>
                                 <th>Tahun Mulai</th>
                                 <th>Tahun Selesai</th>
                                 <th style="width: 180px;">Aksi</th>
@@ -33,10 +34,11 @@
                         </thead>
                         <tbody>
                             @foreach ($datatuSI as $data)
-                                <tr>
+                                <tr style="text-align: center">
                                     <td>{{ $data->nik }}</td>
                                     <td>{{ $data->user->nama }}</td>
                                     <td>{{ $data->user->email }}</td>
+                                    <td>{{ $data->status_karyawan }}</td>
                                     <td>{{ $data->tahun_mulai }}</td>
                                     <td>{{ $data->tahun_selesai }}</td>
                                     <td class="text-center">

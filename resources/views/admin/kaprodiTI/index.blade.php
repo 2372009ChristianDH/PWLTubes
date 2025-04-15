@@ -26,6 +26,7 @@
                                 <th>NIK</th>
                                 <th>Nama</th>
                                 <th>Email</th>
+                                <th>Status</th>
                                 <th>Tahun Mulai</th>
                                 <th>Tahun Selesai</th>
                                 <th style="width: 180px;">Aksi</th>
@@ -33,12 +34,13 @@
                         </thead>
                         <tbody>
                             @foreach ($dataKaprodiTI as $data)
-                                <tr>
+                                <tr style="text-align: center">
                                     <td>{{ $data->nik }}</td>
                                     <td>{{ $data->user->nama }}</td>
                                     <td>{{ $data->user->email }}</td>
-                                    <td>{{ $data->tahun_mulai }}</td>
-                                    <td>{{ $data->tahun_selesai }}</td>
+                                    <td>{{ $data->status_karyawan }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($data->tahun_mulai)->format('d M Y') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($data->tahun_selesai)->format('d M Y') }}</td>
                                     <td class="text-center">
                                         @if ($data->user->id_roles == 2)
                                             <div class="d-flex justify-content-center gap-2">

@@ -28,7 +28,7 @@ Route::get('/lihat-surat/{filename}', function ($filename) {
         abort(404);
     }
 
-    return Response::file($path);
+    return Response::download($path);
 });
 
 
@@ -190,21 +190,25 @@ Route::middleware([AuthenticateRole::class . ':4'])->group(function () {
         return view('mahasiswa.create_keaktifan');
     })->name('form_surat_keaktifan');
     Route::post('/mahasiswa/create_keaktifan', [MahasiswaController::class, 'store_keaktifan'])->name('surat_keaktifan');
+    Route::post('/mahasiswa/create_keaktifan/{id}', [MahasiswaController::class, 'update_keaktifan'])->name('update_keaktifan');
 
     Route::get('/mahasiswa/create_lhs', function () {
         return view('mahasiswa.create_lhs');
     })->name('form_surat_lhs');
     Route::post('/mahasiswa/create_lhs', [MahasiswaController::class, 'store_lhs'])->name('surat_lhs');
+    Route::post('/mahasiswa/create_lhs/{id}', [MahasiswaController::class, 'update_lhs'])->name('update_lhs');
 
     Route::get('/mahasiswa/create_ptmk', function () {
         return view('mahasiswa.create_ptmk');
     })->name('form_surat_ptmk');
     Route::post('/mahasiswa/create_ptmk', [MahasiswaController::class, 'store_ptmk'])->name('surat_ptmk');
+    Route::post('/mahasiswa/create_ptmk/{id}', [MahasiswaController::class, 'update_ptmk'])->name('update_ptmk');
 
     Route::get('/mahasiswa/create_lulus', function () {
         return view('mahasiswa.create_lulus');
     })->name('form_surat_lulus');
     Route::post('/mahasiswa/create_lulus', [MahasiswaController::class, 'store_lulus'])->name('surat_lulus');
+    Route::post('/mahasiswa/create_lulus/{id}', [MahasiswaController::class, 'update_lulus'])->name('update_lulus');
 
 
     // return form surat

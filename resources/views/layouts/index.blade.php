@@ -39,7 +39,7 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
-    @yield('ExtraCcs')
+    @yield('ExtraCCS')
 
 </head>
 
@@ -181,7 +181,7 @@
             fillColor: "rgba(255, 165, 52, .14)",
         });
     </script>
-    @yield('ExtraJs')
+    @yield('ExtraJS')
 
 </body>
 
