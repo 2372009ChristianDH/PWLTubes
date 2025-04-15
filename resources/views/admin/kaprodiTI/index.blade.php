@@ -40,7 +40,9 @@
                                     <td>{{ $data->user->email }}</td>
                                     <td>{{ $data->status_karyawan }}</td>
                                     <td>{{ \Carbon\Carbon::parse($data->tahun_mulai)->format('d M Y') }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($data->tahun_selesai)->format('d M Y') }}</td>
+                                    <td>
+                                        {{ optional($data->tahun_selesai ? \Carbon\Carbon::parse($data->tahun_selesai) : null)->format('d M Y') ?? '' }}
+                                    </td>
                                     <td class="text-center">
                                         @if ($data->user->id_roles == 2)
                                             <div class="d-flex justify-content-center gap-2">

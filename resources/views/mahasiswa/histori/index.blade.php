@@ -73,7 +73,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($suratKeaktifan as $item)
-                                    @if (in_array($item->suratDetail->status_persetujuan, ['Disetujui', 'Ditolak']))
+                                    @if (in_array($item->suratDetail->status_persetujuan, ['Disetujui', 'Surat Ditolak']))
                                         <tr>
                                             <td>{{ $item->nama }}</td>
                                             <td>{{ \Carbon\Carbon::parse($item->suratDetail->tgl_permohonan)->translatedFormat('d F Y') }}

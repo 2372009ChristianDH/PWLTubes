@@ -247,11 +247,6 @@
                                         <span class="sub-item">Histori Pengajuan</span>
                                     </a>                                    
                                 </li>
-                                <li>
-                                    <a href="icon-menu.html">
-                                        <span class="sub-item">Status Surat</span>
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                     </li>
